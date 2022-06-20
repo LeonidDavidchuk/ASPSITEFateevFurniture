@@ -2,10 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
-
 namespace LenchikSite.Data;
-
-
 
 public static class DBservice
 {
@@ -13,7 +10,6 @@ public static class DBservice
     {
         using (DBContext db = new DBContext())
         {
-
             db.SaveChanges();
         }
     }
@@ -24,7 +20,6 @@ public static class DBservice
         {
             db.Furniture.Add(new Furniture { Price = price, Image = image, Name = name, Category = db.Category.FirstOrDefault(x => x.Id == categoryid) });
             db.SaveChanges();
-
         }
     }
 
@@ -34,11 +29,8 @@ public static class DBservice
         {
             db.Furniture.Remove(furniture);
             db.SaveChanges();
-
         }
     }
-
-
 
 
     public static List<Furniture> furniture { get; set; } = new List<Furniture>();
@@ -50,7 +42,6 @@ public static class DBservice
             furniture = db.Furniture.ToList();
             category = db.Category.ToList();
         }
-
     }
 
     public static Tuple<bool, string> authadmin(string login, string pass)
@@ -62,8 +53,6 @@ public static class DBservice
                 return Tuple.Create(db.Client.ToList().Find(x => x.Login.Equals(login) && x.Pass.Equals(pass)).Root, login);
             }
             return Tuple.Create(false, "Вход");
-
-            
         }
     }
 }
