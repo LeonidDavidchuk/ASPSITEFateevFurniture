@@ -1,0 +1,63 @@
+﻿@inject NavigationManager nav;
+@using LenchikSite.Data;
+@inject AppState appstate;
+
+
+@page "/auth"
+
+
+<PageTitle>Auth</PageTitle>
+
+
+<div class="container but">
+    <label for="uname"><b>Логин</b></label>
+    <input @bind-value="login" type="text" placeholder="Введите логин" name="uname" required>
+
+
+    <label for="psw"><b>Пароль</b></label>
+    <input @bind-value="password" type="password" placeholder="Введите пароль" name="psw" required>
+
+    <button @onclick="Login" class="background_but">Войти</button>
+    <button @onclick="redirect" class="background_but1">Нет аккаунта? Зарегистрироваться</button>
+    @if (isError)
+    {
+        <span style = "color: red">Не правильный логин или пароль</span>
+    }
+</div>
+
+@code
+{
+    private string login = string.Empty;
+    private string password = string.Empty;
+    private bool isError = false;
+
+    private void redirect()
+    {
+        nav.NavigateTo("/reg/");
+    }
+
+    private void Login()
+    {
+        var data = DBservice.authadmin(login, password);
+
+        if (data.Item2 != "Вход")
+        {
+            if (data.Item1)
+            {
+                nav.NavigateTo("/adminpanel/");
+            }
+            else
+            {
+                nav.NavigateTo("/");
+            }
+            appstate.UserName = data.Item2;
+        }
+        else
+        {
+            isError = true;
+        }
+
+
+
+    }
+}

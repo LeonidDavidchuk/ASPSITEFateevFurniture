@@ -1,0 +1,68 @@
+﻿@using LenchikSite.Data
+@inject AppState AppState
+@implements IDisposable
+@inherits LayoutComponentBase
+
+
+<PageTitle>LenchikSite</PageTitle>
+<link href="css/site.css" rel="stylesheet" />
+
+<div>
+    <div class="mainheader">
+        <div class="headercontainer">
+
+            <div>
+                <NavLink style="text-decoration: none" href="/">
+
+                    <h1 class="logo noselect">FateevFurniture</h1>
+
+                </NavLink>
+            </div>
+            <div class="buttons-container">
+                <NavLink href="/sofas">
+                    <button class="atuin-btn">Диваны</button>
+                </NavLink>
+                <NavLink href="/closets">
+                    <button class="atuin-btn">Шкафы</button>
+                </NavLink>
+                <NavLink href="/chairs">
+                    <button class="atuin-btn">Стулья</button>
+                </NavLink>
+                <NavLink href="/tables">
+                    <button class="atuin-btn">Столы</button>
+                </NavLink>
+                <div class="cart">
+                    <NavLink href="/cart">
+                        <img src="https://sab2up.ru/wp-content/uploads/2017/10/shopping-basket_icon-icons.com_65049.png" width="60" height="60">
+                    </NavLink>
+                </div>
+                <div class="auth">
+                    <NavLink href="/auth">
+                        <button class="atuin-btn">@AppState.UserName</button>
+                    </NavLink>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code
+{
+    protected async override void OnInitialized()
+    {
+        AppState.OnChange += StateHasChanged;
+        StateHasChanged();
+
+    }
+    public void Dispose()
+    {
+        AppState.OnChange -= StateHasChanged;
+    }
+}
