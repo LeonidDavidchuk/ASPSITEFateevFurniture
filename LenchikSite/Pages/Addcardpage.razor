@@ -1,0 +1,54 @@
+﻿@using LenchikSite.Data;
+@using LenchikSite.Net;
+@using Microsoft.EntityFrameworkCore;
+
+@inject AppState appstate;
+@inject NavigationManager nav;
+
+@page "/addcardpage"
+
+    
+    <label for="price"><b>Цена</b></label>
+    <input @bind-value="price"  type="text" placeholder="Введите цену товара" name="price" required>
+
+    <label for="img"><b>Изображение</b></label>
+    <input @bind-value="img"  type="text" placeholder="Введите ссылку на изображение" name="img" required>
+
+    <label for="name"><b>Название</b></label>
+    <input @bind-value="name"  type="text" placeholder="Введите название товара" name="name" required>
+
+    <label for="category"><b>Категория</b></label>
+    <input @bind-value="categoryid"  type="text" placeholder="Введите ID категории товара" name="category" required>
+
+    <button @onclick="AddCards" class="background_but">Подтвердить</button>
+
+  
+
+    <select @bind="categoryid">
+    @foreach (var item in DBservice.category)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+    </select>
+
+
+
+@code 
+{
+    int category = -1;
+
+    private string price = string.Empty;
+    private string img = string.Empty;
+    private string name = string.Empty;
+    private int categoryid;
+
+    //db.Category.FirstOrDefault(x => x.Id == categoryid)
+    private void AddCards()
+    {
+        DBservice.AddFurniture(price, img, name, categoryid);
+        DBservice.GetDataFromDB();
+        price = string.Empty; img = string.Empty; name = string.Empty; categoryid = DBservice.category.First().Id;
+    }
+
+    
+}

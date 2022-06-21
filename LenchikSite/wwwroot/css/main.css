@@ -130,6 +130,10 @@
     width: 24%;
     margin-right: 10px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     
 }
 
