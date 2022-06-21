@@ -7,33 +7,31 @@
 
 @page "/addcardpage"
 
-    
-    <label for="price"><b>Цена</b></label>
-    <input @bind-value="price"  type="text" placeholder="Введите цену товара" name="price" required>
 
-    <label for="img"><b>Изображение</b></label>
-    <input @bind-value="img"  type="text" placeholder="Введите ссылку на изображение" name="img" required>
+<label for="price"><b>Цена</b></label>
+<input @bind-value="price" type="text" placeholder="Введите цену товара" name="price" required>
 
-    <label for="name"><b>Название</b></label>
-    <input @bind-value="name"  type="text" placeholder="Введите название товара" name="name" required>
+<label for="img"><b>Изображение</b></label>
+<input @bind-value="img" type="text" placeholder="Введите ссылку на изображение" name="img" required>
 
-    <label for="category"><b>Категория</b></label>
-    <input @bind-value="categoryid"  type="text" placeholder="Введите ID категории товара" name="category" required>
+<label for="name"><b>Название</b></label>
+<input @bind-value="name" type="text" placeholder="Введите название товара" name="name" required>
 
-    <button @onclick="AddCards" class="background_but">Подтвердить</button>
+<label for="category"><b>Категория</b></label>
+<input @bind-value="categoryid" type="text" placeholder="Введите ID категории товара" name="category" required>
 
-  
+<button @onclick="AddCards" class="background_but">Подтвердить</button>
 
-    <select @bind="categoryid">
+<select @bind="categoryid">
     @foreach (var item in DBservice.category)
     {
         <option value="@item.Id">@item.Name</option>
     }
-    </select>
+</select>
 
 
 
-@code 
+@code
 {
     int category = -1;
 
@@ -50,5 +48,5 @@
         price = string.Empty; img = string.Empty; name = string.Empty; categoryid = DBservice.category.First().Id;
     }
 
-    
+
 }

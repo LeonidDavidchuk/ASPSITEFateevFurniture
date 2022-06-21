@@ -31,6 +31,15 @@ public static class DBservice
         }
     }
 
+    public static void AddCategory(string name)
+    {
+        using (DBContext db = new DBContext())
+        {
+            db.Category.Add(new Category { Name = name });
+            db.SaveChanges();
+        }
+    }
+
     public static void AddUser(string login, string password)
     {
         using (DBContext db = new DBContext())

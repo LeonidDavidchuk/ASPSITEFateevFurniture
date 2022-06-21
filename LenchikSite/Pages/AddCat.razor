@@ -1,0 +1,27 @@
+﻿@using LenchikSite.Data;
+@using LenchikSite.Net;
+@using Microsoft.EntityFrameworkCore;
+
+@inject AppState appstate;
+@inject NavigationManager nav;
+
+@page "/addcategory"
+
+<label for="price"><b>Название</b></label>
+    <input @bind-value="name"  type="text" placeholder="Введите название категории" name="price" required>
+
+<button @onclick="AddCategory" class="background_but">Подтвердить</button>
+
+
+@code 
+{
+    private string name = string.Empty;
+
+    private void AddCategory()
+    {
+        DBservice.AddCategory(name);
+        DBservice.GetDataFromDB();
+        name = string.Empty;
+    }
+
+}
