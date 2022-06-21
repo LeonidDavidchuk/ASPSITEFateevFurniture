@@ -9,11 +9,10 @@ namespace LenchikSite.Net
         public DbSet<Category> Category { get; set; } = null!;
         public DbSet<Client> Client { get; set; } = null!;
 
-
         public DBContext()
         {
-           // Database.EnsureDeleted();
-           Database.EnsureCreated();
+            // Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

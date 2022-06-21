@@ -1,12 +1,9 @@
 ﻿@using LenchikSite.Data;
 @using Microsoft.EntityFrameworkCore;
 
-
-
 @page "/closets"
 
 <PageTitle>Closets</PageTitle>
-
 
 <input class="input" maxlength="30" placeholder="Поиск" @bind-value="searchQuery" @bind-value:event="oninput" />
 <div class="main_products_cards">
@@ -24,7 +21,6 @@
             </div>
         }
     }
-
 </div>
 
 @code {

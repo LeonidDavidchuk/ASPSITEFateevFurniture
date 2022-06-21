@@ -1,9 +1,8 @@
 ﻿@using LenchikSite.Data;
 
-<h3>DeletePage</h3>
 @page "/deletepage"
 
-
+<h3>DeletePage</h3>
 
 <select @bind="furnitureid">
     @foreach (var item in DBservice.furniture)
@@ -22,9 +21,8 @@
             <span class="price">@furniture.Price </span>
         </div>
     </div>
-    <button class = "btn btn-danger" @onclick = "@((args)=>removeitem(furniture))">Удалить</button>
+    <button class="btn btn-danger" @onclick="@((args)=>removeitem(furniture))">Удалить</button>
 }
-
 
 @code
 {

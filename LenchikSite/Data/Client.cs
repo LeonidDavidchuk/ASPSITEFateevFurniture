@@ -7,7 +7,6 @@ namespace LenchikSite.Data
 		public string Login { get; set; }
 		public string Pass { get; set; }
 		public bool Root { get; set; }
-
 	}
 }
 

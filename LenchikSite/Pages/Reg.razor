@@ -1,20 +1,30 @@
-﻿@page "/reg"
+﻿@inject NavigationManager nav;
+@using LenchikSite.Data;
+@inject AppState appstate;
 
+@page "/reg"
 
 <PageTitle>Registration</PageTitle>
-c
-<div class="container but">
-    <label for="email"><b>Электронная почта</b></label>
-    <input type="text" placeholder="Введите электронную почту" name="email" required>
 
+<div class="container but">
     <label for="uname"><b>Логин</b></label>
-    <input type="text" placeholder="Введите логин" name="uname" required>
+    <input @bind-value="login" type="text" placeholder="Введите логин" name="uname" required>
 
     <label for="psw"><b>Пароль</b></label>
-    <input type="password" placeholder="Введите пароль" name="psw" required>
+    <input @bind-value="password" type="password" placeholder="Введите пароль" name="psw" required>
 
-    <label for="ppsw"><b>Подтверждение пароля</b></label>
-    <input type="password" placeholder="Подтвердите пароль" name="ppsw" required>
-
-    <button class="background_but">Зарегистрироваться</button>
+    <button @onclick="Registration" class="background_but">Зарегистрироваться</button>
 </div>
+
+@code
+{
+    private string login = string.Empty;
+    private string password = string.Empty;
+    private bool isError = false;
+
+    private void Registration()
+    {
+        DBservice.AddUser(login, password);
+        nav.NavigateTo("/auth/");
+    }
+}

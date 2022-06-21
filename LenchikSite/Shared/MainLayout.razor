@@ -3,21 +3,19 @@
 @implements IDisposable
 @inherits LayoutComponentBase
 
-
 <PageTitle>LenchikSite</PageTitle>
+
 <link href="css/site.css" rel="stylesheet" />
 
 <div>
     <div class="mainheader">
         <div class="headercontainer">
-
             <div>
                 <NavLink style="text-decoration: none" href="/">
-
                     <h1 class="logo noselect">FateevFurniture</h1>
-
                 </NavLink>
             </div>
+
             <div class="buttons-container">
                 <NavLink href="/sofas">
                     <button class="atuin-btn">Диваны</button>
@@ -36,6 +34,7 @@
                         <img src="https://sab2up.ru/wp-content/uploads/2017/10/shopping-basket_icon-icons.com_65049.png" width="60" height="60">
                     </NavLink>
                 </div>
+
                 <div class="auth">
                     <NavLink href="/auth">
                         <button class="atuin-btn">@AppState.UserName</button>
@@ -44,7 +43,6 @@
             </div>
         </div>
     </div>
-
 
     <main>
         <article class="content px-4">
@@ -59,7 +57,6 @@
     {
         AppState.OnChange += StateHasChanged;
         StateHasChanged();
-
     }
     public void Dispose()
     {

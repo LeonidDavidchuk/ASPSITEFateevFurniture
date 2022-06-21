@@ -12,9 +12,5 @@
             this.name = name;
             this.price = price;
         }
-
-
     }
-
-
 }

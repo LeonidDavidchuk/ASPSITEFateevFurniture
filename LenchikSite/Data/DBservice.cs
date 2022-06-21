@@ -1,7 +1,6 @@
 ﻿using LenchikSite.Net;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace LenchikSite.Data;
 
 public static class DBservice
@@ -32,6 +31,15 @@ public static class DBservice
         }
     }
 
+    public static void AddUser(string login, string password)
+    {
+        using (DBContext db = new DBContext())
+        {
+            db.Client.Add(new Client { Login = login, Pass = password, Root = false });
+            db.SaveChanges();
+        }
+    }
+
 
     public static List<Furniture> furniture { get; set; } = new List<Furniture>();
     public static List<Category> category { get; set; } = new List<Category>();
@@ -56,6 +64,8 @@ public static class DBservice
         }
     }
 }
+
+
 
 
 

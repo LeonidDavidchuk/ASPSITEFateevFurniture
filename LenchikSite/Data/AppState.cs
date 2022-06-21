@@ -29,7 +29,6 @@
                 }
             }
         }
-
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }
