@@ -40,6 +40,15 @@ public static class DBservice
         }
     }
 
+    public static void RemoveCategory(Category category)
+    {
+        using (DBContext db = new DBContext())
+        {
+            db.Category.Remove(category);
+            db.SaveChanges();
+        }
+    }
+
     public static void AddUser(string login, string password)
     {
         using (DBContext db = new DBContext())
