@@ -3,22 +3,25 @@
 
 <PageTitle>Main</PageTitle>
 
-<input class="input" maxlength="30" placeholder="Поиск" @bind-value="searchQuery" @bind-value:event="oninput" />
+
 <div class="main_products_cards">
-    @foreach (var item in DBservice.furniture)
-    {
-        if (searchQuery == String.Empty || (searchQuery != String.Empty && item.Name.ToLower().Contains(searchQuery.ToLower())))
+    <input class="input" maxlength="30" placeholder="Поиск" @bind-value="searchQuery" @bind-value:event="oninput" />
+    <div class="main_products_cards">
+        @foreach (var item in DBservice.furniture)
         {
-            <div class="product-item">
-                <img src="@item.Image">
-                <div class="product-list">
-                    <h3>@item.Name</h3>
-                    <span class="price">@item.Price </span>
-                    <a href="" class="button">В корзину</a>
+            if (searchQuery == String.Empty || (searchQuery != String.Empty && item.Name.ToLower().Contains(searchQuery.ToLower())))
+            {
+                <div class="product-item">
+                    <img src="@item.Image">
+                    <div class="product-list">
+                        <h3>@item.Name</h3>
+                        <span class="price">@item.Price </span>
+                        <a href="" class="button">В корзину</a>
+                    </div>
                 </div>
-            </div>
+            }
         }
-    }
+    </div>
 </div>
 
 @code

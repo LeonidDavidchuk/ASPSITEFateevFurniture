@@ -1,0 +1,40 @@
+﻿@using LenchikSite.Data;
+
+@page "/editcards"
+
+<select @bind="cardid">
+    @foreach (var item in DBservice.furniture)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+<br>
+<label for="price"><b>Изменить Цену</b></label>
+<input @bind-value="price" type="text" placeholder="Введите цену товара" name="price" required>
+
+<label for="img"><b>Изменить Изображение</b></label>
+<input @bind-value="img" type="text" placeholder="Измените ссылку на изображение" name="img" required>
+
+<label for="name"><b>Название</b></label>
+<input @bind-value="name" type="text" placeholder="Измените название товара" name="name" required>
+
+<label for="category"><b>Категория</b></label>
+<input @bind-value="categoryid" type="text" placeholder="Измените ID категории товара" name="category" required>
+
+<button @onclick="Edit" class="background_but">Подтвердить изменение</button>
+
+@code {
+    private int cardid;
+    private string price = string.Empty;
+    private string img = string.Empty;
+    private string name = string.Empty;
+    private int categoryid;
+
+    private void Edit()
+    {
+        DBservice.EditFurniture(cardid, price, img, name, categoryid);
+        DBservice.GetDataFromDB();
+        price = string.Empty; img = string.Empty; name = string.Empty; categoryid = DBservice.category.First().Id;
+    }
+
+}

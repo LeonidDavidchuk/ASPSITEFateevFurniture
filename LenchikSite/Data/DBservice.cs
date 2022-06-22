@@ -31,6 +31,21 @@ public static class DBservice
         }
     }
 
+    public static void EditFurniture(int cardID, string price, string image, string name, int categoryid)
+    {
+        using (DBContext db = new DBContext())
+        {
+            var d = db.Furniture.Where(x => x.Id == cardID).First();
+            d.Category = db.Category.FirstOrDefault(x => x.Id == categoryid)!;
+            d.Price = price;
+            d.Image = image;
+            d.Name = name;
+            d.Category = db.Category.FirstOrDefault(x => x.Id == categoryid)!;
+          
+            db.SaveChanges();
+        }
+    }
+
     public static void AddCategory(string name)
     {
         using (DBContext db = new DBContext())
@@ -57,6 +72,8 @@ public static class DBservice
             db.SaveChanges();
         }
     }
+
+
 
 
     public static List<Furniture> furniture { get; set; } = new List<Furniture>();
