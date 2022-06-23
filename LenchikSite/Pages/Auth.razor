@@ -2,6 +2,8 @@
 
 @inject NavigationManager nav;
 @inject AppState appstate;
+@inject Blazored.LocalStorage.ILocalStorageService session;
+
 
 @page "/auth"
 
@@ -33,9 +35,12 @@
         nav.NavigateTo("/reg/");
     }
 
-    private void Login()
+    private async void Login()
     {
         var data = DBservice.authadmin(login, password);
+
+         await session.SetItemAsync("user", login);
+
 
         if (data.Item2 != "Вход")
         {

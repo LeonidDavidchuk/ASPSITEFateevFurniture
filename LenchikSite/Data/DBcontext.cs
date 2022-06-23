@@ -8,11 +8,12 @@ namespace LenchikSite.Net
         public DbSet<Furniture> Furniture { get; set; } = null!;
         public DbSet<Category> Category { get; set; } = null!;
         public DbSet<Client> Client { get; set; } = null!;
+        public DbSet<Basket> Basket { get; set; } = null!;
 
         public DBContext()
         {
-            // Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

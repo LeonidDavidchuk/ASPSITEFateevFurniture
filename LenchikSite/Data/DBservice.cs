@@ -10,6 +10,7 @@ public static class DBservice
         using (DBContext db = new DBContext())
         {
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -19,6 +20,7 @@ public static class DBservice
         {
             db.Furniture.Add(new Furniture { Price = price, Image = image, Name = name, Category = db.Category.FirstOrDefault(x => x.Id == categoryid) });
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -28,6 +30,7 @@ public static class DBservice
         {
             db.Furniture.Remove(furniture);
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -43,6 +46,7 @@ public static class DBservice
             d.Category = db.Category.FirstOrDefault(x => x.Id == categoryid)!;
           
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -52,6 +56,7 @@ public static class DBservice
         {
             db.Category.Add(new Category { Name = name });
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -61,6 +66,7 @@ public static class DBservice
         {
             db.Category.Remove(category);
             db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
@@ -70,20 +76,36 @@ public static class DBservice
         {
             db.Client.Add(new Client { Login = login, Pass = password, Root = false });
             db.SaveChanges();
+            GetDataFromDB();
+        }
+    }
+
+    public static void AddBasket(Basket basket)
+    {
+        using (DBContext db = new DBContext())
+        {
+            db.Basket.Add(basket);
+            db.SaveChanges();
+            GetDataFromDB();
         }
     }
 
 
 
-
     public static List<Furniture> furniture { get; set; } = new List<Furniture>();
     public static List<Category> category { get; set; } = new List<Category>();
+    public static List<Basket> basket { get; set; } = new List<Basket>();
+    public static List<Client> client { get; set; } = new List<Client>();
+
+
     public static void GetDataFromDB()
     {
         using (DBContext db = new DBContext())
         {
             furniture = db.Furniture.ToList();
             category = db.Category.ToList();
+            basket = db.Basket.ToList();
+            client = db.Client.ToList();
         }
     }
 

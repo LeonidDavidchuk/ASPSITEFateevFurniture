@@ -6,7 +6,7 @@
 
 <input class="input" maxlength="30" placeholder="Поиск" @bind-value="searchQuery" @bind-value:event="oninput" />
 <div class="main_products_cards">
-    @foreach (var item in DBservice.furniture.Where(x => x.Category.Id == 4))
+    @foreach (var item in DBservice.furniture.Where(x => x.Category.Id == 1))
     {
         if (searchQuery == String.Empty || (searchQuery != String.Empty && item.Name.ToLower().Contains(searchQuery.ToLower())))
         {
