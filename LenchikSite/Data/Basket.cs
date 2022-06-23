@@ -8,7 +8,5 @@
         public string Price { get; set; } = null!;
         public int FurnitureID { get; set; }
         public int UserID { get; set; }
-        
-
     }
 }

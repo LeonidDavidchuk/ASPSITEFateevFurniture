@@ -44,7 +44,7 @@ public static class DBservice
             d.Image = image;
             d.Name = name;
             d.Category = db.Category.FirstOrDefault(x => x.Id == categoryid)!;
-          
+
             db.SaveChanges();
             GetDataFromDB();
         }
@@ -103,7 +103,33 @@ public static class DBservice
         }
     }
 
+    public static void DeleteBasket(Basket id)
+    {
+        using (DBContext db = new DBContext())
+        {
+            db.Basket.Remove(id);
+            db.SaveChanges();
+            GetDataFromDB();
+        }
+    }
 
+    //public static void DeleteofBasket(Basket basket)
+    //{
+    //    using (DBContext db = new DBContext())
+    //    {
+    //        db.Basket.Remove(basket);
+    //        db.SaveChanges();
+    //        GetDataFromDB();
+    //    }
+    //}
+
+    //public static void ClearBasket()
+    //{
+    //    using (DBContext db = new DBContext())
+    //    {
+    //        db.Database.ExecuteSqlInterpolated($"TRUNCATE TABLE [Basket]");
+    //    }
+    //}
 
     public static List<Furniture> furniture { get; set; } = new List<Furniture>();
     public static List<Category> category { get; set; } = new List<Category>();

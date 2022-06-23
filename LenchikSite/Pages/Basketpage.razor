@@ -1,5 +1,6 @@
 ﻿@using LenchikSite.Data;
 @using Microsoft.EntityFrameworkCore;
+@using LenchikSite.Pages;
 
 @inject Blazored.LocalStorage.ILocalStorageService session;
 
@@ -8,7 +9,7 @@
 <PageTitle>Basket</PageTitle>
 
 
-
+<button @onclick="((args)=>ClearAllBasket())">Оформить заказ</button>
 <div class="main_products_cards">
     @if (clientid != 0)
     {
@@ -21,6 +22,7 @@
                     <div class="product-list">
                         <h3>@item.Name</h3>
                         <span class="price">@item.Price </span>
+                        <button @onclick="((args)=>DeleteFromBasket(item))">Удалить</button>
                     </div>
                 </div>
             }
@@ -41,5 +43,16 @@
         login = await session.GetItemAsync<string>("user");
         clientid = DBservice.client.Where(x => x.Login == login).FirstOrDefault().Id;
         StateHasChanged();
+    }
+
+    private void DeleteFromBasket(Basket basket)
+    {
+        DBservice.DeleteBasket(basket);
+        DBservice.GetDataFromDB();
+    }
+
+    private void ClearAllBasket()
+    {
+        DBservice.ClearBasket();
     }
 }
