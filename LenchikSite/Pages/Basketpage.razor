@@ -8,8 +8,6 @@
 
 <PageTitle>Basket</PageTitle>
 
-
-<button @onclick="((args)=>ClearAllBasket())">Оформить заказ</button>
 <div class="main_products_cards">
     @if (clientid != 0)
     {
@@ -22,7 +20,7 @@
                     <div class="product-list">
                         <h3>@item.Name</h3>
                         <span class="price">@item.Price </span>
-                        <button @onclick="((args)=>DeleteFromBasket(item))">Удалить</button>
+                        <button style="background: red" @onclick="((args)=>DeleteFromBasket(item))">Удалить</button>
                     </div>
                 </div>
             }
@@ -49,10 +47,5 @@
     {
         DBservice.DeleteBasket(basket);
         DBservice.GetDataFromDB();
-    }
-
-    private void ClearAllBasket()
-    {
-        DBservice.ClearBasket();
     }
 }

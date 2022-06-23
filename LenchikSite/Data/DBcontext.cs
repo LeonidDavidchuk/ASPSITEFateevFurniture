@@ -12,7 +12,7 @@ namespace LenchikSite.Net
 
         public DBContext()
         {
-            //Database.EnsureDeleted();
+            // Database.EnsureDeleted();
             //Database.EnsureCreated();
         }
 
