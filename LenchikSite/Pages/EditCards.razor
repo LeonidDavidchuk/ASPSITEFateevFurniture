@@ -23,7 +23,7 @@
 
 <button @onclick="Edit" class="background_but">Подтвердить изменение</button>
 
-@code {
+@code { 
     private int cardid;
     private string price = string.Empty;
     private string img = string.Empty;
@@ -36,5 +36,4 @@
         DBservice.GetDataFromDB();
         price = string.Empty; img = string.Empty; name = string.Empty; categoryid = DBservice.category.First().Id;
     }
-
 }

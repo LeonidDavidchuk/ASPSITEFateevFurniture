@@ -50,6 +50,19 @@ public static class DBservice
         }
     }
 
+    public static void EditCategory(string name, int categoryid)
+    {
+        using (DBContext db = new DBContext())
+        {
+            var d = db.Category.Where(x => x.Id == categoryid).First();
+            d.Id = db.Category.FirstOrDefault(x => x.Id == categoryid)!.Id;
+            d.Name = name;
+
+            db.SaveChanges();
+            GetDataFromDB();
+        }
+    }
+
     public static void AddCategory(string name)
     {
         using (DBContext db = new DBContext())

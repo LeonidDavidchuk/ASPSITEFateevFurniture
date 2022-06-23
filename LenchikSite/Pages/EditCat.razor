@@ -1,0 +1,28 @@
+﻿@using LenchikSite.Data;
+
+@page "/editcat"
+
+<select @bind="catid">
+    @foreach (var item in DBservice.category)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+<br>
+<label for="price"><b>Изменить Категорию</b></label>
+<input @bind-value="name" type="text" placeholder="Измените название категории" name="name" required>
+
+<button @onclick="Edit" class="background_but">Подтвердить изменение</button>
+
+
+@code {
+    private int catid;
+    private string name = string.Empty;
+
+    private void Edit()
+    {
+        DBservice.EditCategory(name, catid);
+        DBservice.GetDataFromDB();
+        name = string.Empty; 
+    }
+}

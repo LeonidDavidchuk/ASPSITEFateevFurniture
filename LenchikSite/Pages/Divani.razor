@@ -1,5 +1,8 @@
 ﻿@using LenchikSite.Data;
 @using Microsoft.EntityFrameworkCore;
+
+@inject Blazored.LocalStorage.ILocalStorageService session;
+
 @page "/sofas"
 
 <PageTitle>Sofas</PageTitle>
@@ -15,7 +18,7 @@
                 <div class="product-list">
                     <h3>@item.Name</h3>
                     <span class="price">@item.Price </span>
-                    <a href="" class="button">В корзину</a>
+                    <a @onclick="((args)=>AddToBasket(item.Id))" class="button">В корзину</a>
                 </div>
             </div>
         }
@@ -24,5 +27,16 @@
 
 @code 
 {
+    int clientid;
     string searchQuery = string.Empty;
+    string login = string.Empty;
+
+    public async void AddToBasket(int Id)
+    {
+        login = await session.GetItemAsync<string>("user");
+        clientid = DBservice.client.Where(x => x.Login == login).FirstOrDefault().Id;
+        DBservice.AddBasket(new LenchikSite.Data.Basket { Price = DBservice.furniture[Id-1].Price, Image = DBservice.furniture[Id-1].Image, Name = DBservice.furniture[Id-1].Name, FurnitureID = Id-1, UserID = clientid });
+
+        DBservice.GetDataFromDB();
+    }
 }
